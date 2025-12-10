@@ -11,8 +11,18 @@ api = "0.7"
     uri = "https://github.com/paketo-buildpacks/yarn/blob/main/LICENSE"
 
 [metadata]
-  include-files = ["bin/run", "bin/build", "bin/detect", "buildpack.toml"]
-  pre-package = "./scripts/build.sh"
+  include-files = [
+    "buildpack.toml",
+    "linux/amd64/bin/build",
+    "linux/amd64/bin/detect",
+    "linux/amd64/bin/run",
+    "linux/arm64/bin/build",
+    "linux/arm64/bin/detect",
+    "linux/arm64/bin/run",
+  ]
+
+  pre-package = "./scripts/build.sh --target linux/amd64 --target linux/arm64"
+
   [metadata.default_versions]
     yarn = "1.*"
 
@@ -30,19 +40,19 @@ api = "0.7"
     version = "1.22.19"
 
   [[metadata.dependencies]]
-    checksum = "sha256:c8d3eae160a892e32837db3dcae515e843e5383fef52b8141940c8bcf8b6d59f"
+    checksum = "sha256:75fd1c08678a187eb29b589109d90a30cdb98ffbcb80b81cf65faa2b2f71c94e"
     cpe = "cpe:2.3:a:yarnpkg:yarn:4.9.2:*:*:*:*:*:*:*"
     id = "yarn"
     licenses = ["BSD-2-Clause"]
     name = "Yarn"
     purl = "pkg:generic/yarn@4.9.2"
-    source = "https://registry.npmjs.org/yarn/-/yarn-4.9.2.tgz"
-    source-checksum = "sha256:c8d3eae160a892e32837db3dcae515e843e5383fef52b8141940c8bcf8b6d59f"
+    source = "https://registry.npmjs.org/@yarnpkg/cli/-/cli-4.9.2.tgz"
+    source-checksum = "sha256:75fd1c08678a187eb29b589109d90a30cdb98ffbcb80b81cf65faa2b2f71c94e"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "io.buildpacks.stacks.noble", "*"]
     strip-components = 1
-    uri = "https://registry.npmjs.org/yarn/-/yarn-4.9.2.tgz"
+    uri = "https://paketo-artifacts.s3.us-east-1.amazonaws.com/yarn/yarn-4.9.2.tgz"
     version = "4.9.2"
-    
+
   [[metadata.dependencies]]
     checksum = "sha256:88268464199d1611fcf73ce9c0a6c4d44c7d5363682720d8506f6508addf36a0"
     cpe = "cpe:2.3:a:yarnpkg:yarn:1.22.22:*:*:*:*:*:*:*"
@@ -73,3 +83,11 @@ api = "0.7"
 
 [[stacks]]
   id = "*"
+
+[[targets]]
+  os = "linux"
+  arch = "amd64"
+
+[[targets]]
+  os = "linux"
+  arch = "arm64"

@@ -2,4 +2,7 @@
 .idea/
 .DS_Store
 /build
-*.bak
+/bin
+/linux
+/darwin
+/windows
