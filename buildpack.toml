@@ -5,6 +5,7 @@ api = "0.7"
   id = "neeto-deploy/yarn"
   name = "Paketo Buildpack for Yarn"
   sbom-formats = ["application/vnd.cyclonedx+json", "application/spdx+json", "application/vnd.syft+json"]
+  version = "2.2.6"
 
   [[buildpack.licenses]]
     type = "Apache-2.0"
@@ -21,7 +22,7 @@ api = "0.7"
     "linux/arm64/bin/run",
   ]
 
-  pre-package = "./scripts/build.sh --target linux/amd64 --target linux/arm64"
+  pre-package = "./scripts/build.sh"
 
   [metadata.default_versions]
     yarn = "1.*"

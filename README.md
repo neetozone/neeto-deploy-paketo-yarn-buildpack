@@ -46,13 +46,15 @@ file that looks like the following:
     launch = true
 ```
 
-## Usage
+## Packaging
 
 To package this buildpack for consumption:
 
-```shell
-$ ./scripts/package.sh --version <version-number>
+```bash
+./scripts/package.sh --version 2.2.6
 ```
+
+This will build the buildpack for all target architectures specified in `buildpack.toml` (amd64 and arm64 by default) and create a single archive containing binaries for all architectures in the `build/` directory.
 
 This will create a `buildpackage.cnb` file under the `build` directory which you
 can use to build your app as follows:
@@ -65,6 +67,29 @@ pack build <app-name> \
 ```
 
 Though the API of this buildpack does not require `node`, yarn is unusable without node.
+
+## Publishing
+
+To publish this buildpack to ECR:
+
+```bash
+# First, authenticate with ECR (if not already authenticated)
+aws ecr get-login-password --region us-east-1 | \
+  docker login --username AWS --password-stdin 348674388966.dkr.ecr.us-east-1.amazonaws.com
+
+# Then publish the buildpack
+./scripts/publish.sh \
+  --image-ref 348674388966.dkr.ecr.us-east-1.amazonaws.com/neeto-deploy/paketo/buildpack/yarn:<version> \
+  --buildpack-type buildpack
+```
+
+The script will automatically:
+- Read target architectures from `buildpack.toml`
+- Extract the buildpack archive
+- Publish each architecture separately with arch-suffixed tags (e.g., `yarn:<version>-amd64`, `yarn:<version>-arm64`)
+- Create and push a multi-arch manifest list
+
+## Usage
 
 ## Run Tests
 
