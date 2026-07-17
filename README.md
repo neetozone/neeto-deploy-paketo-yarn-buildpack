@@ -6,9 +6,10 @@ might use yarn is the [Yarn Install CNB](https://github.com/paketo-buildpacks/ya
 
 ## Integration
 
-The Yarn CNB provides `yarn` as dependency. Downstream buildpacks, like [Yarn Install
-CNB](https://github.com/paketo-buildpacks/yarn-install) can require the `yarn` dependency by generating a [Build Plan
-TOML](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml) file that looks like the following:
+The Yarn CNB provides `yarn` as dependency. Downstream buildpacks, like
+[Yarn Install CNB](https://github.com/paketo-buildpacks/yarn-install) can require the `yarn` dependency by generating a
+[Build Plan TOML](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml) file that looks like the
+following:
 
 ```toml
 [[requires]]
