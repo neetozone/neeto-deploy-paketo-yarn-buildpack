@@ -1,18 +1,15 @@
 # Paketo Buildpack for Yarn
 
-The Yarn CNB provides the [Yarn Package manager](https://yarnpkg.com). The
-buildpack installs `yarn` onto the `$PATH` which makes it available for
-subsequent buildpacks and/or in the final running container. An example of
-buildpack that might use yarn is the [Yarn Install
-CNB](https://github.com/paketo-buildpacks/yarn-install)
+The Yarn CNB provides the [Yarn Package manager](https://yarnpkg.com). The buildpack installs `yarn` onto the `$PATH`
+which makes it available for subsequent buildpacks and/or in the final running container. An example of buildpack that
+might use yarn is the [Yarn Install CNB](https://github.com/paketo-buildpacks/yarn-install)
 
 ## Integration
 
-The Yarn CNB provides `yarn` as dependency. Downstream buildpacks, like [Yarn
-Install CNB](https://github.com/paketo-buildpacks/yarn-install) can require the
-`yarn` dependency by generating a [Build Plan
-TOML](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml)
-file that looks like the following:
+The Yarn CNB provides `yarn` as dependency. Downstream buildpacks, like
+[Yarn Install CNB](https://github.com/paketo-buildpacks/yarn-install) can require the `yarn` dependency by generating a
+[Build Plan TOML](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml) file that looks like the
+following:
 
 ```toml
 [[requires]]
@@ -54,10 +51,10 @@ To package this buildpack for consumption:
 ./scripts/package.sh --version 2.2.6
 ```
 
-This will build the buildpack for all target architectures specified in `buildpack.toml` (amd64 and arm64 by default) and create a single archive containing binaries for all architectures in the `build/` directory.
+This will build the buildpack for all target architectures specified in `buildpack.toml` (amd64 and arm64 by default)
+and create a single archive containing binaries for all architectures in the `build/` directory.
 
-This will create a `buildpackage.cnb` file under the `build` directory which you
-can use to build your app as follows:
+This will create a `buildpackage.cnb` file under the `build` directory which you can use to build your app as follows:
 ```shell
 pack build <app-name> \
   --path <path-to-app> \
